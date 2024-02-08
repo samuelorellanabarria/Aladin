@@ -3,3 +3,4 @@ numpy
 yfinance
 streamlit
 scipy
+pandas_datareader

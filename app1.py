@@ -83,7 +83,7 @@ class PortfolioOptimizer:
         st.divider()
 
 def main():
-    st.title('Optimización de Cartera')
+    st.title('Optimización de Carteras de Inversión')
     portfolio_optimizer = PortfolioOptimizer()
     portfolio_optimizer.get_user_input()
     portfolio_optimizer.get_portfolio_data()

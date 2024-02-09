@@ -18,7 +18,7 @@ class PortfolioOptimizer:
         self.end_date = st.sidebar.text_input("Fecha de fin", "2023-01-31") 
         tickers_input = st.sidebar.text_input("Tickers separados por comas", "AAPL,MSFT,GOOG,AMZN")
         self.tickers = tickers_input.split(',')
-        st.write('Tickers seleccionados:', self.tickers)
+        #st.write('Tickers seleccionados:', self.tickers)
 
     def get_portfolio_data(self):
         data = yf.download(self.tickers, start=self.start_date, end=self.end_date)
@@ -57,14 +57,30 @@ class PortfolioOptimizer:
         min_volatility = self.portfolio_data['Volatility'].min()
         min_variance_port = self.portfolio_data.loc[self.portfolio_data['Volatility'] == min_volatility]
 
-        st.subheader('Cartera de mínima varianza')
-        st.write(min_variance_port.T)
+        #st.subheader('Cartera de mínima varianza')
+        #st.write(min_variance_port.T)
 
         max_return = self.portfolio_data['Returns'].max() 
         max_return_port = self.portfolio_data.loc[self.portfolio_data['Returns'] == max_return]
 
-        st.subheader('Cartera de máximo retorno')
-        st.write(max_return_port.T)
+        #st.subheader('Cartera de máximo retorno')
+        #st.write(max_return_port.T)
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.subheader('Tickers seleccionados')
+            st.write(self.tickers)
+
+        with col2:
+            st.subheader('Cartera de mínima varianza')
+            st.write(min_variance_port.T)
+            
+        with col3:
+            st.subheader('Cartera de máximo retorno')
+            st.write(max_return_port.T)
+            
+        st.divider()
 
 def main():
     st.title('Optimización de Cartera')
